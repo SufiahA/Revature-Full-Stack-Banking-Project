@@ -1,0 +1,16 @@
+create table users (
+	user_id serial primary key,
+	user_name varchar(30) unique,
+	user_pass varchar(30) not null,
+	first_name varchar(30) not null,
+	last_name varchar(30) not null,
+	active boolean not null,
+	employee boolean not null
+);
+
+create table accounts (
+	acc_id serial primary key,
+	acc_owner int references users(user_id),
+	acc_type varchar(30) not null,
+	acc_amount double precision check (acc_amount >= 0)
+);
